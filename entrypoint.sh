@@ -1,6 +1,6 @@
-#!/bin/sh -l 
+#!/bin/sh 
 
-set -e
+set -x
 
 echo '👍 ENTRYPOINT HAS STARTED—INSTALLING THE GEM BUNDLE'
 bundle install
