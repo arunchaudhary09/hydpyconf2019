@@ -36,5 +36,6 @@ If you're still interested in volunteering, here is what you should do next:
 Also, if you have any question, we'd really appreciate if you go through the mailing list archives first, and see if it's already answered. If not, you can send an email to the mailing list.
 
 Hope to see you at the event. Happy volunteering. :)
+Hope to see you at the event. Happy volunteering. :)
 
 **Credits:** Parts of this article is derived from the [PyCon India 2019 article, Volunteering for PyCon India](https://in.pycon.org/blog/2019/volunteering-for-pycon-india-2019.html).
