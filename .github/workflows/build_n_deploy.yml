@@ -1,0 +1,9 @@
+action "Run deploy script" {
+  uses = "arunchaudhary09/hydpyconf2019@ci-cd"
+  args = "ls -al"
+  secrets = [
+    "KEY",
+    "HOST",
+    "USER"
+  ]
+}
