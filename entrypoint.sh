@@ -1,21 +1,34 @@
 #!/bin/sh
 
-set -x
+set -eu
 
-SSH_PATH="$HOME/.ssh"
+printf '\033[33m Warning: This action does not currently support host verification; verification is disabled. \n \033[0m\n'
 
-mkdir -p "$SSH_PATH"
-touch "$SSH_PATH/known_hosts"
+SSHPATH="$HOME/.ssh"
 
-echo "${INPUT_KEY}" > "$SSH_PATH/deploy_key"
+if [ ! -d "$SSHPATH" ]
+then
+  mkdir "$SSHPATH"
+fi
 
-chmod 700 "$SSH_PATH"
-chmod 600 "$SSH_PATH/known_hosts"
-chmod 600 "$SSH_PATH/deploy_key"
+if [ ! -f "$SSHPATH/known_hosts" ]
+then
+  touch "$SSHPATH/known_hosts"
+fi
 
-#eval $(ssh-agent)
-#ssh-add "$SSH_PATH/deploy_key"
-#ssh-add -L
-ssh-keyscan -t rsa ${INPUT_HOST} >> "$SSH_PATH/known_hosts"
-cat "$SSH_PATH/known_hosts"
-ssh -v -i "$SSH_PATH/deploy_key" -o StrictHostKeyChecking=no -A -tt -p 22 ${INPUT_USER}@${INPUT_HOST} "$*"
+echo "$INPUT_KEY" > "$SSHPATH/deploy_key"
+chmod 700 "$SSHPATH"
+chmod 600 "$SSHPATH/known_hosts"
+chmod 600 "$SSHPATH/deploy_key"
+
+echo "$INPUT_COMMAND" > $HOME/shell.sh
+cat $HOME/shell.sh
+
+echo Start Run Command
+
+if [ "$INPUT_PASS" = "" ]
+then
+  sh -c "ssh -i $SSHPATH/deploy_key -o StrictHostKeyChecking=no -p $INPUT_PORT ${INPUT_USER}@${INPUT_HOST} < $HOME/shell.sh"
+else
+  sh -c "sshpass -p $INPUT_PASS ssh -o StrictHostKeyChecking=no -p $INPUT_PORT ${INPUT_USER}@${INPUT_HOST} < $HOME/shell.sh"
+fi

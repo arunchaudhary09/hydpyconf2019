@@ -1,18 +1,27 @@
 name: 'Remote SSH Commands'
 description: 'Run remote ssh commands'
-author: 'arunchaudhary.bit@gmail.com'
 inputs:
-  HOST:
+  command:
+    description: "Command to execute on the remote server."
+    required: true
+  host:
     description: "Hostname or IP address of the server."
     required: false
     default: "localhost"
-  USER:
+  user:
     description: "Username for authentication."
     required: false
     default: "root"
-  KEY:
+  port:
+    description: "Port number of the server."
+    required: false
+    default: "22"
+  key:
     description: "File Location or string that contains a private key for either key-based or hostbased user authentication (OpenSSH format)"
     required: true
+  pass:
+    description: "Password for authentication."
+    required: false
 
 runs:
   using: 'docker'
