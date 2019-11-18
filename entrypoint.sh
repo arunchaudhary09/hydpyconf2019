@@ -7,7 +7,7 @@ SSH_PATH="$HOME/.ssh"
 mkdir -p "$SSH_PATH"
 touch "$SSH_PATH/known_hosts"
 
-echo "$KEY" > "$SSH_PATH/deploy_key"
+echo "${INPUT_KEY}" > "$SSH_PATH/deploy_key"
 
 chmod 700 "$SSH_PATH"
 chmod 600 "$SSH_PATH/known_hosts"
