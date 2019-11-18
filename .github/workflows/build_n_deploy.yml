@@ -1,9 +1,15 @@
-action "Run deploy script" {
-  uses = "arunchaudhary09/hydpyconf2019@ci-cd"
-  args = "ls -al"
-  secrets = [
-    "KEY",
-    "HOST",
-    "USER"
-  ]
-}
+name: remote ssh command
+on: [push]
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Run deploy script
+      uses: arunchaudhary09/hydpyconf2019@ci-cd
+      with:
+        HOST: ${{ secrets.HOST }}
+        USER: ${{ secrets.USER }}
+        KEY: ${{ secrets.KEY }}
+        script: whoami
