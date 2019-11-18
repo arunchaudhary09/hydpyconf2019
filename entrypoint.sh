@@ -14,8 +14,8 @@ chmod 700 "$SSH_PATH"
 chmod 600 "$SSH_PATH/known_hosts"
 chmod 600 "$SSH_PATH/deploy_key"
 
-eval $(ssh-agent)
-ssh-add "$SSH_PATH/deploy_key"
+#eval $(ssh-agent)
+#ssh-add "$SSH_PATH/deploy_key"
 ssh-add -L
 ssh-keyscan -t rsa ${INPUT_HOST} >> "$SSH_PATH/known_hosts"
 cat "$SSH_PATH/known_hosts"
