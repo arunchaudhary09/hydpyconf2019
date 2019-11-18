@@ -1,4 +1,4 @@
-FROM debian:stable-slim
+FROM ubuntu:latest
 
 LABEL "maintainer"="Arun Chaudhary <arunchaudhary.bit@gmail.com>"
 LABEL "repository"="https://github.com/arunchaudhary09/hydpyconf2019@ci-cd"
