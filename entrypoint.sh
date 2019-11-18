@@ -1,6 +1,7 @@
 #!/bin/sh
 
 set -e
+set -x
 
 SSH_PATH="$HOME/.ssh"
 
@@ -15,10 +16,7 @@ chmod 600 "$SSH_PATH/deploy_key"
 
 eval $(ssh-agent)
 ssh-add "$SSH_PATH/deploy_key"
-echo "HOST: ${HOST}"
-echo "INPUT_HOST: ${INPUT_HOST}"
-echo "USER: ${USER}"
-echo "INPUT_USER: ${INPUT_USER}"
+
 ssh-keyscan -t rsa ${INPUT_HOST} >> "$SSH_PATH/known_hosts"
 
 ssh -o StrictHostKeyChecking=no -A -tt -p ${PORT:-22} ${INPUT_USER}@${INPUT_HOST} "$*"
